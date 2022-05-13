@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Survey}\PYG{p}{:}
+    \PYG{n}{mandatory\PYGZus{}fields} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}type\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}questions.question.q\PYGZsq{}}\PYG{p}{,}
+	\PYG{l+s+s1}{\PYGZsq{}questions.question.options.o\PYGZsq{}}\PYG{p}{,} \PYG{p}{]}
+
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{survey\PYGZus{}xmltag}\PYG{p}{):}
+        \PYG{n}{XmlTagValidator}\PYG{o}{.}\PYG{n}{validate}\PYG{p}{(}\PYG{n}{survey\PYGZus{}xmltag}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{mandatory\PYGZus{}fields}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{remote\PYGZus{}id} \PYG{o}{=} \PYG{k+kc}{None}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{local\PYGZus{}sid} \PYG{o}{=} \PYG{n}{survey\PYGZus{}xmltag}\PYG{o}{.}\PYG{n}{attributes}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}id\PYGZsq{}}\PYG{p}{]}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{type} \PYG{o}{=} \PYG{n}{survey\PYGZus{}xmltag}\PYG{o}{.}\PYG{n}{get\PYGZus{}child\PYGZus{}tag\PYGZus{}content}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}type\PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{pin} \PYG{o}{=} \PYG{n}{survey\PYGZus{}xmltag}\PYG{o}{.}\PYG{n}{get\PYGZus{}child\PYGZus{}tag\PYGZus{}content}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}pin\PYGZsq{}}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{questions} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}questions}\PYG{p}{(}\PYG{n}{survey\PYGZus{}xmltag}\PYG{o}{.}\PYG{n}{get\PYGZus{}child\PYGZus{}tag}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}questions\PYGZsq{}}\PYG{p}{))}
+
+\end{Verbatim}

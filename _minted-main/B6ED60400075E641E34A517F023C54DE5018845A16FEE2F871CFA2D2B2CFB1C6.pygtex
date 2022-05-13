@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{handle\PYGZus{}event}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{event}\PYG{p}{):}
+    \PYG{n}{eventname} \PYG{o}{=} \PYG{n}{event}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{n}{EVENT\PYGZus{}ARG\PYGZus{}DELIMITER}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}HANDLING \PYGZdq{}} \PYG{o}{+} \PYG{n}{eventname}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{eventname} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{event\PYGZus{}map}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{():}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}ERROR: eventmap cannot handle event:\PYGZdq{}} \PYG{o}{+} \PYG{n}{eventname}\PYG{p}{)}
+    \PYG{n}{mem}\PYG{o}{.}\PYG{n}{insertData}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}event\PYGZdq{}}\PYG{p}{,} \PYG{k+kc}{None}\PYG{p}{)}
+    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{event\PYGZus{}map}\PYG{p}{[}\PYG{n}{eventname}\PYG{p}{]}\PYG{o}{.}\PYG{n}{execute\PYGZus{}event}\PYG{p}{(}\PYG{n}{event}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/Arch Linux)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: agsm.bst
+Database file #1: refs.bib
+Warning--empty chapter and pages in anaya_2021
+Warning--empty institution in pep20
+Warning--empty institution in pep8
+You've used 17 entries,
+            2909 wiz_defined-function locations,
+            726 strings with 6745 characters,
+and the built_in function-call counts, 43392 in all, are:
+= -- 6947
+> -- 498
+< -- 2
++ -- 3152
+- -- 147
+* -- 3497
+:= -- 9107
+add.period$ -- 17
+call.type$ -- 17
+change.case$ -- 215
+chr.to.int$ -- 17
+cite$ -- 20
+duplicate$ -- 249
+empty$ -- 467
+format.name$ -- 194
+if$ -- 7757
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 22
+newline$ -- 61
+num.names$ -- 151
+pop$ -- 141
+preamble$ -- 1
+purify$ -- 245
+quote$ -- 0
+skip$ -- 163
+stack$ -- 0
+substring$ -- 9469
+swap$ -- 29
+text.length$ -- 220
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 46
+warning$ -- 3
+while$ -- 323
+width$ -- 0
+write$ -- 210
+(There were 3 warnings)

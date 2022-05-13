@@ -1,0 +1,40 @@
+\selectlanguage *{english}
+\contentsline {section}{List Of Used Abbreviations}{7}{}%
+\contentsline {section}{Introduction}{7}{}%
+\contentsline {section}{\numberline {1.{}}Development Objectives}{10}{}%
+\contentsline {subsection}{\numberline {1.1.{}}Nao presentation controller}{10}{}%
+\contentsline {subsection}{\numberline {1.2.{}}Nao GUI shell}{11}{}%
+\contentsline {subsection}{\numberline {1.3.{}}Survey conductor}{11}{}%
+\contentsline {subsection}{\numberline {1.4.{}}Work breakdown structure}{11}{}%
+\contentsline {section}{\numberline {2.{}}Design Engineering}{13}{}%
+\contentsline {subsection}{\numberline {2.1.{}}Nao robot}{13}{}%
+\contentsline {subsection}{\numberline {2.2.{}}COM objects}{13}{}%
+\contentsline {subsubsection}{\numberline {2.2.1.{}}COM in multithreaded applications}{15}{}%
+\contentsline {subsection}{\numberline {2.3.{}}Programming Language}{15}{}%
+\contentsline {subsubsection}{\numberline {2.3.1.{}}Python IDE}{16}{}%
+\contentsline {subsection}{\numberline {2.4.{}}Methodology}{16}{}%
+\contentsline {subsubsection}{\numberline {2.4.1.{}}Kanban}{17}{}%
+\contentsline {subsubsection}{\numberline {2.4.2.{}}Version Control System}{17}{}%
+\contentsline {subsubsection}{\numberline {2.4.3.{}}Continuous Integration}{18}{}%
+\contentsline {subsubsection}{\numberline {2.4.4.{}}Code quality control}{19}{}%
+\contentsline {subsection}{\numberline {2.5.{}}Architecture}{20}{}%
+\contentsline {subsubsection}{\numberline {2.5.1.{}}Deployment schemes}{20}{}%
+\contentsline {subsubsection}{\numberline {2.5.2.{}}Sequence diagram}{22}{}%
+\contentsline {subsubsection}{\numberline {2.5.3.{}}Class diagram}{23}{}%
+\contentsline {section}{\numberline {3.{}}Implementation}{24}{}%
+\contentsline {subsection}{\numberline {3.1.{}}Presentation Controller}{24}{}%
+\contentsline {subsubsection}{\numberline {3.1.1.{}}Notes Parsing}{24}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.{}}Event Handling}{25}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.{}}COM Object handling}{26}{}%
+\contentsline {subsubsection}{\numberline {3.1.4.{}}Shutdown system}{27}{}%
+\contentsline {subsubsection}{\numberline {3.1.5.{}}Survey Parsing}{27}{}%
+\contentsline {subsubsection}{\numberline {3.1.6.{}}Survey Conductor Interfacing}{29}{}%
+\contentsline {subsection}{\numberline {3.2.{}}Survey Conductor}{30}{}%
+\contentsline {subsubsection}{\numberline {3.2.1.{}}Survey entity model}{31}{}%
+\contentsline {subsubsection}{\numberline {3.2.2.{}}Django HTML templating}{32}{}%
+\contentsline {subsubsection}{\numberline {3.2.3.{}}CSS styling}{34}{}%
+\contentsline {section}{\numberline {4.{}}Testing}{36}{}%
+\contentsline {subsection}{\numberline {4.1.{}}Manual testing}{36}{}%
+\contentsline {subsection}{\numberline {4.2.{}}Automation testing}{36}{}%
+\contentsline {subsection}{\numberline {4.3.{}}Unit testing}{37}{}%
+\contentsline {section}{Conclusion}{38}{}%

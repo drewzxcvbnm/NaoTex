@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{TextTranslationSystem}\PYG{p}{:}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{presentation}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{text\PYGZus{}processors} \PYG{o}{=} \PYG{p}{[}\PYG{n}{CharacaterNormalizer}\PYG{p}{(),}
+                                \PYG{n}{XmlTranslator}\PYG{p}{(}\PYG{n}{presentation}\PYG{p}{),}
+                                \PYG{n}{DuplicateSpaceRemover}\PYG{p}{()]}
+
+    \PYG{k}{def} \PYG{n+nf}{translate}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{text}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{processor} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{text\PYGZus{}processors}\PYG{p}{:}
+            \PYG{n}{text} \PYG{o}{=} \PYG{n}{processor}\PYG{o}{.}\PYG{n}{process}\PYG{p}{(}\PYG{n}{text}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{text}
+\end{Verbatim}

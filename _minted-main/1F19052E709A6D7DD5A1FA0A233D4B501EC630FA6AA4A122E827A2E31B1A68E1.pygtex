@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{\PYGZlt{}survey} \PYG{n+na}{id=}\PYG{l+s}{\PYGZdq{}2\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+	\PYG{n+nt}{\PYGZlt{}pin\PYGZgt{}}0A2X\PYG{n+nt}{\PYGZlt{}/pin\PYGZgt{}}
+	\PYG{n+nt}{\PYGZlt{}type\PYGZgt{}}auto\PYG{n+nt}{\PYGZlt{}/type\PYGZgt{}}
+	\PYG{n+nt}{\PYGZlt{}questions\PYGZgt{}}
+		\PYG{n+nt}{\PYGZlt{}question\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}q\PYGZgt{}}What is the first letter of the english alphabet?\PYG{n+nt}{\PYGZlt{}/q\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}validoption\PYGZgt{}}1\PYG{n+nt}{\PYGZlt{}/validoption\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}options\PYGZgt{}}
+				\PYG{n+nt}{\PYGZlt{}o\PYGZgt{}}A\PYG{n+nt}{\PYGZlt{}/o\PYGZgt{}}
+				\PYG{n+nt}{\PYGZlt{}o\PYGZgt{}}B\PYG{n+nt}{\PYGZlt{}/o\PYGZgt{}}
+				\PYG{n+nt}{\PYGZlt{}o\PYGZgt{}}C\PYG{n+nt}{\PYGZlt{}/o\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}/options\PYGZgt{}}
+		\PYG{n+nt}{\PYGZlt{}/question\PYGZgt{}}
+		\PYG{n+nt}{\PYGZlt{}question\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}q\PYGZgt{}}What is the second letter?\PYG{n+nt}{\PYGZlt{}/q\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}timelimit\PYGZgt{}}10\PYG{n+nt}{\PYGZlt{}/timelimit\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}validoption\PYGZgt{}}2\PYG{n+nt}{\PYGZlt{}/validoption\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}options\PYGZgt{}}
+				\PYG{n+nt}{\PYGZlt{}o\PYGZgt{}}Z\PYG{n+nt}{\PYGZlt{}/o\PYGZgt{}}
+				\PYG{n+nt}{\PYGZlt{}o\PYGZgt{}}B\PYG{n+nt}{\PYGZlt{}/o\PYGZgt{}}
+				\PYG{n+nt}{\PYGZlt{}o\PYGZgt{}}O\PYG{n+nt}{\PYGZlt{}/o\PYGZgt{}}
+			\PYG{n+nt}{\PYGZlt{}/options\PYGZgt{}}
+		\PYG{n+nt}{\PYGZlt{}/question\PYGZgt{}}
+	\PYG{n+nt}{\PYGZlt{}/questions\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}/survey\PYGZgt{}}
+\end{Verbatim}

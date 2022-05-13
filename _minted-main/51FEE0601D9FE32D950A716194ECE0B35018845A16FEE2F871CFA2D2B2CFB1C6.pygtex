@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{MockStartMedia}\PYG{p}{:}
+
+    \PYG{k}{def} \PYG{n+nf}{to\PYGZus{}string}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{c+c1}{\PYGZsh{} Event(\PYGZdq{}startmedia\PYGZdq{}, MediaPresentationEvent(), presentation, com\PYGZus{}context)}
+        \PYG{k}{return} \PYG{l+s+s2}{\PYGZdq{} \PYGZdl{}wait=1 \PYGZdl{}event=startmedia \PYGZdq{}}
+
+
+\PYG{k}{class} \PYG{n+nc}{MockPresentation}\PYG{p}{:}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{surveys} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{event\PYGZus{}map} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}startmedia\PYGZsq{}}\PYG{p}{:} \PYG{n}{MockStartMedia}\PYG{p}{()\PYGZcb{}}
+
+
+\PYG{k}{class} \PYG{n+nc}{TestTranslator}\PYG{p}{(}\PYG{n}{unittest}\PYG{o}{.}\PYG{n}{TestCase}\PYG{p}{):}
+
+    \PYG{k}{def} \PYG{n+nf}{test\PYGZus{}translation}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n}{txt} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}...\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n}{result} \PYG{o}{=} \PYG{n}{TextTranslationSystem}\PYG{p}{(}\PYG{n}{MockPresentation}\PYG{p}{())}\PYG{o}{.}\PYG{n}{translate}\PYG{p}{(}\PYG{n}{txt}\PYG{p}{)}
+        \PYG{n}{expected} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}\PYGZdq{}...\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{assertEquals}\PYG{p}{(}\PYG{n}{result}\PYG{p}{,} \PYG{n}{expected}\PYG{p}{)}
+
+\end{Verbatim}

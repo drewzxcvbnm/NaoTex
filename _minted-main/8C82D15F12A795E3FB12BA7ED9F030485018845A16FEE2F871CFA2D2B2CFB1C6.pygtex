@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{app\PYGZus{}exit}\PYG{p}{():}
+    \PYG{n}{behman}\PYG{o}{.}\PYG{n}{stopAllBehaviors}\PYG{p}{()}
+    \PYG{n}{presentation}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}del\PYGZus{}\PYGZus{}}\PYG{p}{()}
+    \PYG{n}{reading\PYGZus{}service}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}del\PYGZus{}\PYGZus{}}\PYG{p}{()}
+    \PYG{n}{tts}\PYG{o}{.}\PYG{n}{stopAll}\PYG{p}{()}
+    \PYG{n}{kill\PYGZus{}process}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}POWERPNT.exe\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{pythoncom}\PYG{o}{.}\PYG{n}{CoUninitialize}\PYG{p}{()}
+    \PYG{n}{sys}\PYG{o}{.}\PYG{n}{exit}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{mem} \PYG{o}{=} \PYG{n}{session}\PYG{o}{.}\PYG{n}{service}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}ALMemory\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{mem}\PYG{o}{.}\PYG{n}{declareEvent}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}event\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{subscriber} \PYG{o}{=} \PYG{n}{mem}\PYG{o}{.}\PYG{n}{subscriber}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}event\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{subscriber}\PYG{o}{.}\PYG{n}{signal}\PYG{o}{.}\PYG{n}{connect}\PYG{p}{(}\PYG{n}{handle\PYGZus{}event\PYGZus{}callback}\PYG{p}{)}
+\end{Verbatim}
