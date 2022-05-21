@@ -2,15 +2,17 @@
 \include{config.tex}
 
 \begin{document}
+%\includepdf[pages={1,2,3,4}]{final.pdf}
 \setcounter{page}{5}
-%\includepdf{img/bach_title_zacs.pdf}
-%
+
+
 \renewcommand{\cfttoctitlefont}{\hfill\Large\bf}
 \renewcommand{\cftaftertoctitle}{\hfill\hfill}
 \let\oldcontentsname\contentsname
 \renewcommand{\contentsname}{ \HeaderSize \hfill \HeaderSize \oldcontentsname}
 \renewcommand{\cftsecfont}{\mdseries\scshape\sffamily}
-%
+\renewcommand{\cftsecpagefont}{\mdseries\scshape\sffamily}
+
 %\section*{\centering CONFIRMATION}
 %I, Andris Začs, confirm that I have developed the given graduation thesis individually for obtaining the degree of Bachelor of Natural Sciences in Computer Sciences. By my signature I verify that the given graduation thesis is written independently and there are no violations regarding the rights of intellectual property of other persons or plagiarism. The used papers and data sources of other authors are indicated in references. The text of the submitted paper has never been submitted partially or fully to other commission for thesis evaluation. I confirm that the electronic version of the submitted thesis meets completely the text of the submitted paper copy of the thesis.
 %\\
@@ -46,6 +48,8 @@
 %\newpage
 
 
+\setlength\cftbeforesecskip{1pt}
+
 \tableofcontents
 \newpage
 
@@ -68,7 +72,6 @@
 		\sortitem{CI - Continuous Integration}
 		\sortitem{PPTX - PowerPoint Open XML}
 		\sortitem{UX - User Experience}
-		\sortitem{IPC - Inter Process Communcation}
 		\sortitem{HTTP - Hypertext Transfer Protocol}
 		\sortitem{AWS - Amazon Web Services}
 		\sortitem{DTL - Django Template Language}
@@ -90,7 +93,7 @@ Nao Presentation Tool Suite (NPTS) consists of mainly 3 modules:
 Nao presentation controller program is mainly responsible for opening a presentation, making the robot Nao read out the text for each slide and jumping to the next slide. In addition, it is capable of playing embedded audio/video and to hold a survey by interfacing with the Survey conductor. The audible for text each slide is provided in the notes section. \par
 Nao GUI shell is meant to simplify the users' workflow by providing an intuitive user experience through which one may interact with Nao, configure him and launch the presentation controller program.\par
 Survey conductor is a bare web application that can be used to hold surveys. User is meant to provide a PIN through which they are forwarded to a multiple choice survey. Said survey is created and started by the presentation controller program. The interaction between the survey conductor and presentation controller happens through a simple web API.\par
-There exists an available market alternative, known as \enquote{NAO Presenter application} which in many ways fulfills the same purpose, aside from some minor differences in the technical implementations and intended use cases. Additionally,\enquote{NAO Presenter application} was created as a business-to-business application solution and most definitely not for an individual persons use and according to its creators it was designed for organizations that receive the public, e.g.
+There exists an available market alternative, known as \enquote{NAO Presenter application} which in many ways fulfills the same purpose, aside from some minor differences in the technical implementations and intended use cases. Additionally, \enquote{NAO Presenter application} was created as a business-to-business application solution and most definitely not for an individual persons use and according to its creators it was designed for organizations that receive the public, e.g.
 \begin{itemize}
 	\item Museums;
 	\item Shopping centers;
@@ -103,13 +106,13 @@ The development of NPTS was a cooperative effort undertaken by 2 individual stud
 \section{Development Objectives}
 From the very beginning, a number of objectives and criteria were established for the end product, so that it will have all the required features to be realistically useful and usable.
 \subsection{Nao presentation controller}
-Upon starting the nao presentation controller, the program will be able to accept the following input arguments:
+Upon starting the Nao presentation controller, the program will be able to accept the following input arguments:
 \begin{itemize}
-	\item Path to a .pptx file;
+	\item Path to a PPTX file;
 	\item IP address for a Nao robot;
 	\item flag to indicate internet usage (internet usage is required in case a survey is held).
 \end{itemize}
-The program launches PowerPoint and starts a slide show for the inputted pptx file. If the program is unable to find the pptx file or to connect to Nao, an error is raised and the program exits. In case no errors are raised, each slide is sequentially presented to the audience. The text that is read out by Nao is specified in the notes for each slide. In addition to audible words, in the notes there may also be commands that are executed during the reading. These commands may be to:
+The program launches PowerPoint and starts a slide show for the inputted PPTX file. If the program is unable to find the PPTX file or to connect to Nao, an error is raised and the program exits. In case no errors are raised, each slide is sequentially presented to the audience. The text that is read out by Nao is specified in the notes for each slide. In addition to audible words, in the notes there may also be commands that are executed during the reading. These commands may be to:
 \begin{itemize}
 	\item Execute an animation;
 	\item Raise/lower voice volume;
@@ -133,23 +136,34 @@ Since this is an application with a graphical interface, some sort of GUI toolki
 \end{itemize}
 In addition, some SSH related libraries will be used to help establish a secure and stable connection to the Nao robot.
 \subsection{Survey conductor}
-The survey conductor is a web application that is meant to be publicly accessible to members of the audience. During the presentation, a survey may be created and started by the presentation conductor. Upon creation, all of the questions and answer choices must be provided along with a time limit for each question and also a PIN code must be set by which the audience members will be able to access the survey.\par
+The survey conductor is a web application that is meant to be publicly accessible to members of the audience. During the presentation, a survey may be created and started by the presentation conductor. Upon creation, all the questions and answer choices must be provided along with a time limit for each question and also a PIN code must be set by which the audience members will be able to access the survey.\par
 The presentation controller may send a request to start it. The survey conductor then autonomously holds the survey by waiting for the time limit for the question to run out and switching to the next one. After the last question expires the survey is closed and no more interaction is possible with it.\par
 No data processing or aggregation will be conducted. All of the created surveys are essentially stored in memory and not saved or persisted to any storage medium.
 \subsection{Work breakdown structure}
 The development of the Nao Presentation Tool Suite was a cooperative endeavor and as such, responsibilities and tasks had to be delegated. Development of the survey conductor and presentation controller was given to one and the rest to the other. A work breakdown structure diagram was conceived to properly visualize this.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.85\textwidth]{img/wbs.png}
+	\includegraphics[width=1\textwidth]{img/wbs2.png}
 	\caption{Work breakdown structure for the development}
 \end{figure}
 
 \section{Design Engineering} % проектирование
 In order to successfully develop the tool suite as per all the above stated requirements and criteria, many decision and design choices had to be made in advance.
 \subsection{Nao robot}
-Nao is an autonomous, humanoid robot that can be programmed with the Qi framework - an easy to use, highly abstracted SDK that enables a novice programmer to write advanced software.
-Nao runs a custom linux distribution. One can connect to it through SSH to debug issues, conduct certain administrative tasks or as a means to study it more thoroughly.
-In the context of the Nao presentation tool suite, Nao is used mainly as a speech synthesizer. The main advantage that Nao has over other text to speech services is its ability to supplement speech with movements and gestures making it much more expressive and effective as a presentor.
+Nao is an autonomous, humanoid robot that can be programmed with the Qi framework - an easy to use, highly abstracted SDK that enables a novice programmer to write advanced software without getting involved with any low-level hardware concepts like switch debouncing and to quickly and simple utilize all of its motors and sensors, of which it has many.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{img/nao.png}
+	\caption{Locations of Naos motors}
+\end{figure}
+Nao runs a custom Linux distribution. One can connect to it through SSH to debug issues, conduct certain administrative tasks or as a means to study it more thoroughly. An Apache HTTP server instance is also running on Nao, can be reached by using a web browser and used to perform some simple configurations:
+\begin{itemize}
+	\item Setting voice;
+	\item Raising/lowering speech volume;
+	\item Configuring Wi-Fi networks.
+\end{itemize}
+\par
+In the context of the Nao presentation tool suite, Nao is used mainly as a speech synthesizer. The main advantage that Nao has over other text to speech services is its ability to supplement speech with movements and gestures making it much more expressive and effective as a presenter.
 The following modules of the Qi framework were used during development:
 \begin{itemize}
 	\item ALTextToSpeech - used to make Nao talk using the text-to-speech engine.
@@ -162,12 +176,31 @@ The following modules of the Qi framework were used during development:
 	\item ALBehaviorManager - module to manage behaviors. A behavior being a set of instructions that can be installed on Nao.
 \end{itemize}
 \subsection{COM objects}
-In order facilitate the interaction between the presentation controller program and PowerPoint it was decided that COM objects will be used, as it appears to be the most reliable and secure method of IPC for when it comes to Microsoft Office Applications \citep{stevewhims}. If PowerPoint is installed on a system, it registers itself, and it's CLSID into the system's registry. It is then possible to create a new object instance in a language such as Python and call upon this object various methods to orchestrate a slide show.\par
+In order facilitate the interaction between the presentation controller program and PowerPoint it was decided that COM objects will be used, as it appears to be the most reliable and secure method of IPC for when it comes to Microsoft Office Applications \citep{stevewhims}. If PowerPoint is installed on a system, it registers itself, and it's CLSID into the system's registry. It is then possible to create a new object instance in a language such as Python and call upon this object various methods to orchestrate a slide show. It should be noted that every office application technically has its own object model, but due to the efforts of Microsoft the object model has become fairly similar between all the applications, making the learning curve much lower.\par
+\begin{figure}[H]
+	\centering
+	\begin{plantuml}
+@startwbs
+* Application
+** Presentation
+*** Slide Master
+*** Slides (collection)
+**** Slide
+**** Shapes (collection)
+***** Title
+***** Shape
+****** TextFrame
+****** Table
+****** Diagram
+@endwbs
+	\end{plantuml}
+	\caption{PowerPoint object model \citep{ppmodel}}
+\end{figure}
 The API for each COM object type is well documented and described in the official and publicly available Microsoft docs and also some books \citep{box1998essential}. For the purposes of conducting a presentation the following objects were used:
 \begin{itemize}
 	\item Application object (PowerPoint), utilizing:
 		\begin{itemize}
-			\item Method Open - accepts absolute file path to a ppt/pptx file;
+			\item Method Open - accepts absolute file path to a PPT/PPTX file;
 			\item Method Quit - exits PowerPoint.
 		\end{itemize}
 	\item Presentation object, utilizing:
@@ -188,7 +221,7 @@ The API for each COM object type is well documented and described in the officia
 		\begin{itemize}
 			\item Method GotoSlide - accepts integer value indicating which slide to go to;
 			\item Property Slide - object representing the currently selected slide;
-			\item Method Player - accepts Id for Shape object and returns Player object instance.
+			\item Method Player - accepts ID for Shape object and returns Player object instance.
 		\end{itemize}
 	\item Slide object, utilizing:
 		\begin{itemize}
@@ -196,7 +229,7 @@ The API for each COM object type is well documented and described in the officia
 		\end{itemize}
 	\item Shape object, utilizing:
 		\begin{itemize}
-			\item Proprty Id - number that uniquely identifies the shape object;
+			\item Property ID - number that uniquely identifies the shape object;
 			\item Property Type - number indicating type of element (Number 16 stands for embedded media).
 		\end{itemize}
 	\item Player object, utilizing:
@@ -207,10 +240,41 @@ The API for each COM object type is well documented and described in the officia
 \subsubsection{COM in multithreaded applications}
 The execution of commands (for media playback for example) happen concurrently with the main process thread. However, when it comes to multithreaded usage of COM objects there are some pitfalls that should be avoided.\par
 COM has a very long history in Windows. It existed as far back as 16-bit Windows where each process had only one thread. So much of the component object model was designed and written under the assumption that it would be running in a single-threaded application. When Windows NT introduced multithreading, a limitation was initially imposed upon COM objects. A COM object could only be used on the thread that it was created on. In other words, each thread was treated as a single-threaded pseudo process, later dubbed (STA) \enquote{Single-threaded apartment} \citep{chen_2019}.\par
-The only way to effectively use the same COM object on different threads was by marshalling it across, i.e. marshalling the COM object into an Id on the parent thread, relaying that Id to another thread and then unmarshalling the Id back into a COM object. Initially, the presentation controller was designed and developed around this concept.\par
+The only way to effectively use the same COM object on different threads was by marshalling it across, i.e.\ marshalling the COM object into an ID on the parent thread, relaying that ID to another thread and then unmarshalling the ID back into a COM object. Initially, the presentation controller was designed and developed around this concept.\par
 Some time later, COM introduced the concept of \enquote{Multi-threaded apartments} (MTA) in which one can freely use objects among different threads without marshalling. A thread can opt into the MTA by padding \codeword{COINIT\_MULTITHREAD} flag to function \codeword{CoInitializeEx} \citep{pywin32}. Once this was discovered, presentation controller was redesigned and rewritten to utilize MTA.
+\begin{figure}[H]
+	\centering
+	\begin{plantuml}
+@startuml
+package Process {
+  package "STApartment " {
+    rectangle "Thread    " 
+    rectangle "COM Object 3"
+  }
+  package STApartment {
+    rectangle "Thread " 
+    rectangle "COM Object 1"
+  }
+
+  package MTApartment {
+    rectangle "Thread  "
+    rectangle "Thread   "
+    rectangle "COM Object 2" 
+    
+  }
+}
+[COM Object 2] <-up-> [Thread  ]
+[COM Object 2] <-up-> [Thread   ]
+[COM Object 1] <-up-> [Thread ]
+[COM Object 3] <-up-> [Thread    ]
+'[COM Object 1] <-[norank,dashed,#ff0000]-> [Thread    ]
+
+@enduml
+	\end{plantuml}
+	\caption{Usecase diagram for presentation controller/survey conductor}
+\end{figure}
 \subsection{Programming Language}
-In order to rapidly develop applications for Nao, the official SDK was used, which narrows the choice between mostly only 2 programming languages: C++ or Python. Older version of the SDK also had support for .Net, Java, JavaScript and Matlab, however these appear to no longer be officially supported.\par
+In order to rapidly develop applications for Nao, the official SDK was used, which narrows the choice between mostly only 2 programming languages: C++ or Python. Older version of the SDK also had support for \verb|.Net|, Java, JavaScript and Matlab, however these appear to no longer be officially supported.\par
 It was deemed that C++ would be a poor fit for the following reasons:
 \begin{itemize}
 	\item Application does not have serious CPU performance requirements. No intense computations will be taking place and as such there is no need for granularity or optimization that C++ permits to the developer.
@@ -231,19 +295,19 @@ In all other cases, Python 3 will be used because it:
 		\end{itemize}
 	\item Is officially supported and will be patched in cases when vulnerabilities are discovered.
 \subsubsection{Python IDE}
-To make the development process smoother, a proper feature-rich integrated development environment can go a long way. For this reason, Pycharm was chosen and used. It provides many helpfull features such as:
+To make the development process smoother, a proper feature-rich integrated development environment can go a long way. For this reason, PyCharm was selected and used. It provides many helpful features such as:
 \begin{itemize}
-	\item live code validation and syntax highlighting;
-	\item support for plugins like sonarlint which help in some cases to immedietely identify and resolve semantical code issues;
-	\item allows to debug python code without any external requirements;
-	\item ability to quickly and easily set up and change the default python interpretor for a project.
+	\item Live code validation and syntax highlighting;
+	\item support for plugins like sonarlint which help in some cases to immediately identify and resolve semantic code issues;
+	\item allows debugging python code without any external requirements;
+	\item ability to quickly and easily set up and change the default python interpreter for a project.
 \end{itemize}
-The only noteworthy disadvantage for Pycharm, being its slow loading time.
+The only noteworthy disadvantage for PyCharm, being its slow loading time.
 \end{itemize}
 \subsection{Methodology}
 Since the development of the Nao presentation tool suite would be a collaborative effort, certain measures, methods and methodologies had to be employed in order to ensure a smooth and frictionless workflow.
 \subsubsection{Kanban}
-For the efficient distribution of tasks a Kanban board was created on Github. This board is a project management tool meant to help visualize the state of development and maximize efficiency \citep{degrandis_demaria_2017}. The created Kanban board had 3 columns:
+For the efficient distribution of tasks a Kanban board was created on GitHub. This board is a project management tool meant to help visualize the state of development and maximize efficiency \citep{degrandis_demaria_2017}. The created Kanban board had 3 columns:
 \begin{itemize}
 	\item To do;
 	\item Work in Progress;
@@ -251,7 +315,7 @@ For the efficient distribution of tasks a Kanban board was created on Github. Th
 \end{itemize}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\textwidth]{img/kanban_board.png}
+	\includegraphics[width=0.9\textwidth]{img/kanban_board.png}
 	\caption{Snapshot of the kanban board during development}
 \end{figure}
 
@@ -271,34 +335,34 @@ It supports many useful features for development:
 	\item Great Scalability;
 	\item Distributed development.
 \end{itemize}
-In addition Github, git's most popular repository hosting service, also provides many significant advantages:
+In addition, GitHub, git's most popular repository hosting service, also provides many significant advantages:
 \begin{itemize}
 	\item Secure remote repository access control;
 	\item Kanban board creation;
-	\item Continious Integration pipeline support;
+	\item Continuous Integration pipeline support;
 	\item Git branch access control;
 	\item Branch Merge Requests.
 \end{itemize}
-By utilizing GitHubs many features, a secure and efficient workflow was established. By default, it is impossible to commit changes to the main repository branch. All changes need to take place on another feature branch. When changes for a feature are finalized, developer must create a Pull Request on Github. When a pull request is created the CI pipeline is launched and all unit tests are executed, code linters and analyzers are initiated and if any of them fail or return a negative result, the pipeline fails as a whole making it impossible to merge the feature changes until all the issues are resolved \citep{gitteams}.\par
+By utilizing GitHub's many features, a secure and efficient workflow was established. By default, it is impossible to commit changes to the main repository branch. All changes need to take place on another feature branch. When changes for a feature are finalized, developer must create a Pull Request on GitHub. When a pull request is created the CI pipeline is launched and all unit tests are executed, code linters and analyzers are initiated and if any of them fail or return a negative result, the pipeline fails as a whole making it impossible to merge the feature changes until all the issues are resolved \citep{gitteams}.\par
 In addition, a Pull Request must be reviewed and approved by another developer before it can be merged into the main branch. This helps to maintain code quality and make code changes publicly known to other developers.
 \subsubsection{Continuous Integration}
 As mentioned before, whenever a Pull Request is created, the pipeline is launched and number of unit test and code analyzers are executed. To be more specific, the pipeline consists of two concurrently executing jobs:
 \begin{itemize}
 	\item Linting, consisting of 2 steps:
 		\begin{itemize}
-			\item Set up python interpreter and install project dependencies specified in requirements.txt;
+			\item Set up python interpreter and install project dependencies specified in \verb|requirements.txt|;
 			\item Run flake8 on source code.
 		\end{itemize}
 	\item Testing, consisting of 5 steps:
 		\begin{itemize}
-			\item Set up python interpreter and install project dependencies specified in requirements.txt;
+			\item Set up python interpreter and install project dependencies specified in \verb|requirements.txt|;
 			\item Run unit tests with pytest;
 			\item Generate coverage report from before executed tests;
 			\item Run scan for SonarQube.
 		\end{itemize}
 \end{itemize}
 \subsubsection{Code quality control}
-During active developement a lot of code is written. In order to make it more readable and maintainable this code must conform to common standards and conventions \citep{martin_2018}. In python this convention is known as PEP8 \citep{pep8} \citep{pep20}. It introduces many rules by which code must be written, to name a few:
+During active development a lot of code is written. In order to make it more readable and maintainable this code must conform to common standards and conventions \citep{martin_2018}. In python this convention is known as PEP8 \citep{pep8, pep20}. It introduces many rules by which code must be written, to name a few:
 \begin{itemize}
 	\item For an indentation level - 4 spaces are strongly recommended;
 		\begin{itemize}
@@ -326,9 +390,9 @@ During active developement a lot of code is written. In order to make it more re
 	\item Using semicolon to fit compound multiple statements onto one line is discouraged.
 \end{itemize}
 All of these style rules are checked and enforced with the utility program Flake8 \citep{flake8}.\par
-In order to avoid common anti-patterns in python SonarQube was also used as a code analyzer. It helps to avoid more subtle code issues:
+In order to avoid common antipatterns in python SonarQube was also used as a code analyzer. It helps to avoid more subtle code issues:
 \begin{itemize}
-	\item Poor variable naming
+	\item Poor variable naming;
 	\item Large cognitive complexity in functions;
 	\item Use of map/filter functions versus list comprehension;
 	\item Use of indices to iterate over an array when unnecessary;
@@ -342,6 +406,25 @@ In order to avoid common anti-patterns in python SonarQube was also used as a co
 In addition, SonarQube provides a convenient dashboard where all project information is aggregated and displayed in a user-friendly fashion \citep{sonarqube}.
 \subsection{Architecture}
 The architecture for the presentation tool suite is fairly simple, as there are only 3 components and only 2 of them interact with one another at one time.
+\subsubsection{Use case diagram}
+Overall, there are very few use case's, due to the fact that the system was designed to be as autonomous as possible.
+\begin{figure}[H]
+	\centering
+	\begin{plantuml}
+@startuml
+
+actor "Nao Operator"
+actor "Presentation Viewer"
+
+[Nao Operator] --> (Start presentation)
+(Start presentation) --> (Start Survey) : <<includes>>
+[Nao Operator] --> (Answer Survey)
+[Presentation Viewer] --> (Answer Survey)
+@enduml
+	\end{plantuml}
+	\caption{Usecase diagram for presentation controller/survey conductor}
+\end{figure}
+From a user perspective, one can launch a presentation and almost everything else happens on its own. There is minimal user interaction, and as such a minimal use case quantity.
 \subsubsection{Deployment schemes}
 While reading a presentation, the presentation controller first establishes а connection with the robot Nao. When the presentation controller is launched an optional flag is passed regarding the availability of an internet connection. If the flag, indicates that there is no internet connection, then the presentation controller does not try to send any messages to the survey conductor, else it does so when starting the presentation.
 \begin{figure}[H]
@@ -394,7 +477,7 @@ node "Robot Nao"
 \end{figure}
 \subsubsection{Sequence diagram}
 The typical workflow with the presentation tool suite is fairly simple. The user must first launch the presentation controller. This can be done using the systems command prompt or by utilizing the GUI shell application. 
-The presentation controller attempts to establish a connection to the robot and to the PowerPoint application object. During the presentation, HTTP requests may be sent to the survey conductor to start a survey. When the last slide is reached, the presentation controller shut sdown closing PowerPoint with it in the end.
+The presentation controller attempts to establish a connection to the robot and to the PowerPoint application object. During the presentation, HTTP requests may be sent to the survey conductor to start a survey. When the last slide is reached, the presentation controller shuts down closing PowerPoint with it in the end.
 \begin{figure}[H]
 	\centering
 	\begin{plantuml}
@@ -437,6 +520,16 @@ class Presentation {
 	ongoing_events
 	+handle_event()
 	-open_presentation()
+}
+
+class XmlFinder {
+	+find_xml_tag()
+	-_get_end_tag()
+	-_get_tag_finder()
+	-_replace()
+	-_find_tag()
+	-_is_singular()
+	-_is_valid_end_tag()
 }
 
 interface TextProcessor {
@@ -488,6 +581,7 @@ SlidePresentationService --> TextTranslationSystem
 CharacterNormalizer -up-|> TextTranslationSystem
 DuplicateSpaceRemover -up-|> TextTranslationSystem
 XmlTranslator -up-|> TextTranslationSystem
+XmlTranslator -up-> XmlFinder
 @enduml
 	\end{plantuml}
 	\caption{Presentation Controller class diagram}
@@ -498,7 +592,10 @@ During the development and implementation phase, many unforeseen questions and c
 \subsection{Presentation Controller}
 Presentation controller constitutes the largest and most complicated component in the tool suite. There are many reasons for this, foremost being that it was written with Python 2 where type hints are not present and involves the use of concepts such as COM, multithreading and event handling for which some foreknowledge can go a long way.
 \subsubsection{Notes Parsing}
-The text that Nao reads is specified in the notes of each slide, however special tags can be placed that can get perform certain actions. These tags use double backslash as a delimiter, instead of the more widely known angle brackets used in markup languages like XML. As such, to the ease the UX, a parser was implemented to translate XML like tags to the aforementioned double backslash ones.\par
+The text that Nao reads is specified in the notes of each slide, however special tags can be placed that can get perform certain actions. These tags use double backslash as a delimiter, instead of the more widely known angle brackets used in markup languages like XML. As such, to increase and usability and user experience, a parser was implemented to translate XML like tags to the aforementioned double backslash ones. Currently, eleven different tags are supported.\par
+The \codeword{<do[/]>} tag is used for executing animations. Can be used as so: \enquote{<do animation="path/to/animation"/>}, in which case animation is started and slide reading blocks until the animation ends. Or it can be used like so: \enquote{<do animation="path/to/animation"/>next words<do/>}, in which case slide reading only blocks and waits for animation to end when it reaches the end tag.\par
+The \codeword{<set/>} tag is a general tag used to setting some global values during the execution of a presentation. It can be used to set the animation namespace, so that a complete path does not always have to be specified by the user. It can also be used to set the voice for Nao's speech (neutral/joyful/didactic). This is done by using it's attributes "animation-ns" and "voice".\par
+The \codeword{pause} tag is used to pause the speech for variable amount of milliseconds, using the "time" attribute. Time attribute is optional and if not set manually, will be presumed to be set to 100.\par
 During development more text processing was implemented in order to correct symbols that PowerPoint uses instead of the traditional ASCII ones. And also, to fix cases of repeating whitespaces as they cause issues with Nao text synthesizing. Overall, this is all implemented inside the \codeword{TextTranslationSystem} class.
 \begin{figure}[H]
 	\centering
@@ -573,7 +670,7 @@ There are theoretically three circumstances under which the application exits:
 	\item An exception was raised somewhere terminating a thread making it, so there are no more foreground threads in the process.
 \end{itemize}
 Due to the multithreaded nature of the application, the shutdown process is nondeterministic and may sometimes not happen when expected. If, for example, an event was fired and a foreground thread was created, the application will still continue at this point even if the main thread terminates.\par
-When the proper shutdown process is initiated all running behaviors on Nao are terminated, COM resources are freed, PowerPoint process is terminated and the process terminated with a zero status code.
+When the proper shutdown process is initiated all running behaviors on Nao are terminated, COM resources are freed, PowerPoint process is terminated, and the process terminated with a zero status code.
 \begin{figure}[H]
 	\centering
 	\begin{minted}{python}
@@ -589,7 +686,7 @@ def app_exit():
 	\caption{Application exit function}
 \end{figure}
 \subsubsection{Survey Parsing}
-When a survey must be held during a presentation, then it must first be defined in the slide notes. Defined survey can then be initiated with the \enquote{startsurvey} tag later in the notes. The defined survey must define an id for itself to be able to refer to it later on with the \enquote{startsurvey} tag.
+When a survey must be held during a presentation, then it must first be defined in the slide notes. Defined survey can then be initiated with the \enquote{startsurvey} tag later in the notes. The defined survey must define an ID for itself to be able to refer to it later on with the \enquote{startsurvey} tag.
 \begin{figure}[H]
 	\centering
 	\begin{minted}[fontsize=\footnotesize,baselinestretch=1,frame=single]{xml} 
@@ -640,7 +737,7 @@ class Survey:
 	\end{minted}
 	\caption{Survey class partial implementation}
 \end{figure}
-The survey definition is also validated at first to make sure it has all of the mandatory fields before being mapped to an object, though it's fairly superficial and doesn't provide many benefits aside from a slightly more readable exception message in case user incorrectly defined survey in the slide notes. The main validation strategy for surveys would be the usage of the Nao GUI shell application.
+The survey definition is also validated at first to make sure it has all the mandatory fields before being mapped to an object, though it's fairly superficial and doesn't provide many benefits aside from a slightly more readable exception message in case user incorrectly defined survey in the slide notes. The main validation strategy for surveys would be the usage of the Nao GUI shell application.
 \subsubsection{Survey Conductor Interfacing}
 Interactions with the survey conductor happen through HTTP requests. There are currently four distinct HTTP requests that could be executed:
 \begin{itemize}
@@ -668,7 +765,7 @@ class InetDependent:
 	\end{minted}
 	\caption{InetDepedent decorator implementation}
 \end{figure}
-Decorators are a useful tool that help to isolate different aspects of ones code to separate functions improving the overall cohesion and readability of the code \citep{anaya_2021}. 
+Decorators are a useful tool that help to isolate different aspects of one's code to separate functions improving the overall cohesion and readability of the code \citep{anaya_2021}. 
 The \codeword{InetDependent} decorator works by checking the passed command line arguments, skipping the internet dependent operation and returning a substitute value, if needed.
 \subsection{Survey Conductor}
 In order to hold surveys a separate web application was developed with the python Django framework. The survey conductor is deployed using the 3rd party cloud service AWS. The following AWS services were used:
@@ -681,13 +778,13 @@ In order to hold surveys a separate web application was developed with the pytho
 From a user point of view, a PIN code will be presented a priori which will then be inputted be the user on the main screen when they go there.
 \begin{figure}[H]
 	\centering
-	\fbox{\includegraphics[width=0.70\textwidth]{img/pinscreen.png}}
+	\fbox{\includegraphics[width=0.80\textwidth]{img/pinscreen.png}}
 	\caption{Main screen}
 \end{figure}
 Once a PIN is entered, user will be bought to the survey screen. If survey is open then user will be able to press on the different answer options. When the survey is over, it will be possible to go back and forth between the questions and to see the valid answers to them, if there is one.
 \begin{figure}[H]
 	\centering
-	\fbox{\includegraphics[width=0.70\textwidth]{img/surveyscreen.png}}
+	\fbox{\includegraphics[width=0.80\textwidth]{img/surveyscreen.png}}
 	\caption{Survey screen}
 \end{figure}
 \subsubsection{Survey entity model}
@@ -721,7 +818,7 @@ class Presentation(Item):
 	\end{minted}
 	\caption{Presentation class implementation}
 \end{figure}
-The presentation entity is used to represent an ongoing presentation and it encapsulates all of surveys that happen in it. There are also the \codeword{Survey} and \codeword{SurveyQuestion} entities that store all the information regarding the survey.
+The presentation entity is used to represent an ongoing presentation, and it encapsulates all of surveys that happen in it. There are also the \codeword{Survey} and \codeword{SurveyQuestion} entities that store all the information regarding the survey.
 \subsubsection{Django HTML templating}
 The Django framework provides the creatively named Django Template Language (DTL) for creating HTML templates. All of the screens were written and implemented with it. DTL syntax is fairly simplistic. It was designed to help express presentation and not program logic, making it impossible to just directly execute python expressions with it. Though it does provide tags that function similarly to some programming constructs \citep{djangoDev} which includes for loops, if statements and file importing.
 \begin{figure}[H]
@@ -736,12 +833,12 @@ The Django framework provides the creatively named Django Template Language (DTL
 \end{figure}
 All HTML pages import the file \enquote{header.html} which contains all the frameworks and libraries used for developing the screens. And also sets the character set to UTF-8 \citep{htmlmanual}. By doing the importing, the following things were done:
 \begin{itemize}
-	\item JQuery library was imported;
+	\item jQuery library was imported;
 	\item Meta information regarding the viewport and character set was specified;
 	\item Bootstrap stylesheet was imported;
-	\item Commong JS file containing common utility functions was imported.
+	\item Common JS file containing common utility functions was imported.
 \end{itemize}
-This is a fairly trivial convenience that it afforded with server side rending and unfortunately it's impossible to do the same with plain HTML without employing some external JS library.
+This is a fairly trivial convenience that it afforded with server side rending, and unfortunately it's impossible to do the same with plain HTML without employing some external JS library.
 \begin{figure}[H]
 	\centering
 	\begin{minted}[breaklines,frame=single]{html} 
@@ -758,11 +855,11 @@ This is a fairly trivial convenience that it afforded with server side rending a
 	\end{minted}
 	\caption{Contents of header.html}
 \end{figure}
-For development of the HTML pages the framework Bootstrap is used and the library jquery is also utilized. Bootstrap framework mainly being used for stylizing purposes.
+For development of the HTML pages the framework Bootstrap is used and the library jQuery is also utilized. Bootstrap framework mainly being used for stylizing purposes.
 \subsubsection{CSS styling}
 CSS is a formal language for describing the appearance of a document (web page) written using a markup language (HTML). It can also be applied to any XML document, such as SVG or XUL, though that does not apply for this case.\par
-Without CSS, web pages do not have any appeal in their appearance making it prerequisuite for any modern web application. However, CSS is also a very extensive language with much history. The result that being that it's properties interact, often in unexpected ways, and so a certain amount of experience is required to make good use of it. 
-In order to side step this barrier the CSS framework Bootstrap was heavily utilized. Bootstrap defines a plethora of CSS classes for all kinds of situations that can be used in the ddesired html pages. For example, the class \codeword{jumbotron} for showcasing hero unit style content.
+Without CSS, web pages do not have any appeal in their appearance making it a prerequisite for any modern web application. However, CSS is also a very extensive language with much history. The result that being that it's properties interact, often in unexpected ways, and so a certain amount of experience is required to make good use of it. 
+In order to side step this barrier the CSS framework Bootstrap was heavily utilized. Bootstrap defines a plethora of CSS classes for all kinds of situations that can be used in the desired HTML pages. For example, the class \codeword{jumbotron} for showcasing hero unit style content.
 \begin{figure}[H]
 	\centering
 	\begin{minted}[breaklines,frame=single]{html} 
@@ -774,15 +871,69 @@ In order to side step this barrier the CSS framework Bootstrap was heavily utili
 \end{figure}
 The use of bootstrap enables to develop web pages that work across many different devices, including mobile ones \citep{bootstrap}.\par
 A generally simplistic design was made for all the pages. Blueish colors are used everywhere due it being a generally neutral color and main color for the TTI university. The only exception being when showing correct and incorrect question options, where green is used indicate a valid option, and red for an invalid one.\par
+\subsection{Code metrics}
+In order to quantifiably express the quality and maintainability of the code base, some code metrics have been calculated, by utilizing the python utility \codeword{radon}.
+\begin{figure}[H]
+	\centering
+	\begin{minted}{python} 
+161 blocks (classes, functions, methods) analyzed.
+Average complexity: A (1.77639751553)
+	\end{minted}
+	\caption{Total average cyclomatic complexity for presentation controller}
+\end{figure}
+As a matter of fact, the cyclomatic complexity does not exceed "5" in the entire presentation controller project. One of most cyclomatically complicated functions being the \codeword{\_get\_end\_tag} function inside the \codeword{XmlFinder} class.
+\begin{figure}[H]
+	\begin{minted}[fontsize=\footnotesize,baselinestretch=1,frame=single]{python} 
+    def _get_end_tag(self, stag, tag_finder):
+        stag_name = XmlTag(stag).name
+        num_to_find = 1
+        l, r, tag = None, None, None
+        while num_to_find > 0:
+            l, r, tag = next(tag_finder)
+            if self._is_valid_end_tag(stag, tag):
+                num_to_find -= 1
+            elif XmlTag(tag).name == stag_name and not self._is_singular(tag):
+                num_to_find += 1
+        return l, r, tag
+	\end{minted}
+	\caption{Method with highest cyclomatic complexity}
+\end{figure}
+In addition, to guage the maintainability of the code base it's \enquote{maintainability index} has been calculated, which shows an overall mixed image.
+\begin{itemize}[noitemsep,topsep=1pt]
+	\item args.py - A (100.00);
+	\item getbehaviours.py - A (100.00);
+	\item slidepresentationservice.py - A (53.27);
+	\item constants.py - A (100.00);
+	\item services.py - A (65.75);
+	\item preader.py - A (48.54);
+	\item events/event.py - A (47.31);
+	\item events/mediapresentationevent.py - A (64.46);
+	\item events/surveyevent.py - A (69.72);
+	\item events/behavioractionevent.py - A (100.00);
+	\item translation/texttranslator.py - A (100.00);
+	\item naoxml/xmlfinder.py - A (46.95);
+	\item naoxml/xmltag.py - A (35.63);
+	\item naoxml/xmlexceptions.py - A (100.00);
+	\item naoxml/xmltagvalidator.py - A (76.32);
+	\item naoxml/xmltranslator.py - A (32.94);
+	\item web/\_webservice.py - A (100.00);
+	\item web/webinterface.py - A (57.99);
+	\item comthread.py - A (100.00);
+	\item general.py - A (68.20);
+	\item presentation.py - A (61.48);
+	\item survey/survey.py - A (83.43);
+	\item main.py - A (74.31).
+\end{itemize}\par
+The \enquote{maintainability index} is a code metric that measures how maintainable (easy to support and change) source code is. The maintainability index is calculated with a factored formula consisting of Cyclomatic Complexity, SLOC (Source Lines Of Code) and Halstead volume. It is used in several automated software metric tools, including the Microsoft Visual Studio integrated development environment, which uses a shifted scale (0 to 100) derivative. \citep{metrics}
 \section{Testing}
 In terms of testing, not much of it could be done for the development of the presentation tool suite. Since the largest part of the tool suite is the presentation controller, which requires the use of external resources like the survey conductor and Nao robot, it is not possible to write proper integration tests for it. So testing was mainly done through the use of unit tests and manual labor. The only exception being the survey conductor which is not overly dependent of external resources.
 \subsection{Manual testing}
-Manual testing was conducted by setting up a environment akin to that of production. Nao robot was set up. Survey conductor was deployed in the cloud and an example presentation was created. This example presentation made use of almost all of the created tags, and utilized embedded video/audio.\par
+Manual testing was conducted by setting up an environment akin to that of production. Nao robot was set up. Survey conductor was deployed in the cloud and an example presentation was created. This example presentation made use of almost all the created tags, and utilized embedded video/audio.\par
 While testing, there some noted cases of errors/exceptions being raised in some apparently random cases at which point it was deemed that the execution process for the presentation controller is volatile and none deterministic. The cause of this was not clear, but after some investigation was deduced to most likely be a race condition somewhere within the Nao SDK library. So to mitigate potential future issue, most of the manual testing came down to replaying the same presentation over and over again until some error showed up and then tracing that error and finding it's cause.\par
 \subsection{Automation testing}
-Since the Survey Conductor, is not reliant on the presense of Nao or the avaliabilty of any external web services, it's testing could be automated to certain extent. For this, Selenium WebDriver was utilized.
-Selenium WebDriver is primarily a set of libraries for various programming languages. These libraries are used to send HTTP requests to the driver (hence the name WebDriver), using the JsonWireProtocol protocol, which indicate the action that the browser should perform within the current session. Examples of such commands can be commands for finding elements by a locator, following links, parsing the text of a page/element, pressing buttons, or following links on a website page.\par
-There are both official bindings of the library to popular programming languages, and amateur ones. For example, the PHP language support library is not official and is being developed by Facebook. But in this case the Python bindings were used. As such, all of the automation tests were written in Python.\par
+Since the Survey Conductor, is not reliant on the presence of Nao or the availability of any external web services, it's testing could be automated to certain extent. For this, Selenium WebDriver was utilized.
+Selenium WebDriver is primarily a set of libraries for various programming languages. These libraries are used to send HTTP requests to the driver (hence the name WebDriver), using the JsonWireProtocol protocol, which indicate the action that the browser should perform within the current session. Examples of such commands can be commands for finding elements by a locator, following links, parsing the text of a page/element, pressing buttons, or following links on a website page \citep{selenium, selenium2}.\par
+There are both official bindings of the library to popular programming languages, and amateur ones. For example, the PHP language support library is not official and is being developed by Facebook. But in this case the Python bindings were used. As such, all the automation tests were written in Python.\par
 Whenever any noteworthy changes were made to the survey conductor, the automation tests would be launched and if any errors were encountered, it would be investigated and resolved.
 \subsection{Unit testing}
 Unit testing is the process in programming that allows to check the correctness of individual modules of the source code.
@@ -825,18 +976,18 @@ class TestTranslator(unittest.TestCase):
 \end{figure}
 \addcontentsline{toc}{section}{Conclusion}
 \section*{\centering Conclusion}
-To conclude, all of the main components of the Nao presentation tool suite have been implemented to a varying degree of success. The presentation controller successfully opens a presentation, autonomously goes through and sends commands to Nao to speak the required words.
+To conclude, all the main components of the Nao presentation tool suite have been implemented to a varying degree of success. The presentation controller successfully opens a presentation, autonomously goes through and sends commands to Nao to speak the required words.
 The survey conductor establishes a web API by which the presentation controller can create and start surveys. The survey conductor also provides a rather simple and intuitive UX for doing these surveys.
 \par
 While writing the presentation controller some of the written components could be considered redundant. All parts relating to XML processing were manually implemented. XML parsing could have been achieved with the use of the python library \enquote{Beautiful Soup}.
 The process of mapping the XML data to object and then later to JSON could have been skipped, by simply using the library \enquote{xmltodict}. XML validation could have also been done by using the library \enquote{lxml} and writing up an XSD (XML Schema Definition) file.\par
-Regarding COM, it would have been correct to read more on the subject before utilizing them so much. Initially, it was unknown that COM objects could be used across different threads, so a system marshalling and demarshalling was implemented to make it possible. This system was later entirely thrown out when MTAs were discovered.\par
+Regarding COM, it would have been correct to read more on the subject before utilizing them so much. Initially, it was unknown that COM objects could be used across different threads, so a system marshalling and unmarshalling was implemented to make it possible. This system was later entirely thrown out when MTAs were discovered.\par
 While writing the survey conductor many different endpoints were written.
 \begin{itemize}
 	\item endpoint to manually go to next/previous question;
 	\item endpoint to update a survey questions;
-	\item endpoint to open/close a suvey;
-	\item endpoint to get the anwser correctness ratio;
+	\item endpoint to open/close a survey;
+	\item endpoint to get the answer correctness ratio;
 	\item endpoint to delete all presentations and surveys.
 \end{itemize}
 %\begin{figure}[H]
@@ -878,6 +1029,9 @@ Most of the above-mentioned inefficiencies came to be for only a couple of reaso
 	\item Lack of foreknowledge regarding COM.
 \end{itemize}
 %\nocite{*}
-\bibliography{refs.bib} % Entries are in the refs.bib file
 
+\addcontentsline{toc}{section}{Reference List}
+\bibliography{refs.bib} % Entries are in the refs.bib file
+\addcontentsline{toc}{section}{Appendix}
+\include{appendix.tex}
 \end{document}

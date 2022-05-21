@@ -22,6 +22,20 @@ DeGrandis, D. \harvardand\ DeMaria, T.  \harvardyearleft 2017\harvardyearright
   , {\em Making work visible: Exposing time theft to optimize work; flow}, IT
   Revolution Press.
 
+\harvarditem{Granor \harvardand\ Martin}{2000}{ppmodel}
+Granor, T.~E. \harvardand\ Martin, D.  \harvardyearleft 2000\harvardyearright ,
+  {\em Microsoft Office Automation with visual foxpro}, Hentzenwerke Pub.
+
+\harvarditem{Gundecha}{2012}{selenium2}
+Gundecha, U.  \harvardyearleft 2012\harvardyearright , {\em Selenium testing
+  tools cookbook over 90 recipes to build, maintain, and improve test
+  automation with selenium WebDriver}, Packt Pub.
+
+\harvarditem{Gundecha}{2014}{selenium}
+Gundecha, U.  \harvardyearleft 2014\harvardyearright , {\em Learning selenium
+  testing tools with python: A practical guide on automated web testing with
+  selenium using python}.
+
 \harvarditem{Hammond \harvardand\ Robinson}{2000}{pywin32}
 Hammond, M. \harvardand\ Robinson, A.  \harvardyearleft 2000\harvardyearright ,
   {\em Python programming on win32}, O'Reilly.
@@ -48,6 +62,11 @@ MacDonald, M.  \harvardyearleft 2014\harvardyearright , {\em HTML5: The missing
 Martin, R.~C.  \harvardyearleft 2018\harvardyearright , {\em Clean
   architecture: A craftsman's guide to software structure and Design}, Prentice
   Hall.
+
+\harvarditem{Oman \harvardand\ Hagemeister}{1992}{metrics}
+Oman, P. \harvardand\ Hagemeister, J.  \harvardyearleft 1992\harvardyearright ,
+  Metrics for assessing a software system's maintainability, {\em in}
+  `Proceedings Conference on Software Maintenance 1992', pp.~337--344.
 
 \harvarditem{Peters}{2004}{pep20}
 Peters, T.  \harvardyearleft 2004\harvardyearright , The {Zen} of {Python},

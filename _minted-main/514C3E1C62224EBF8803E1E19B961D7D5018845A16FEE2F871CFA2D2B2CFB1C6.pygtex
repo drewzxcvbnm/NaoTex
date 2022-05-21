@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{161} \PYG{n}{blocks} \PYG{p}{(}\PYG{n}{classes}\PYG{p}{,} \PYG{n}{functions}\PYG{p}{,} \PYG{n}{methods}\PYG{p}{)} \PYG{n}{analyzed}\PYG{o}{.}
+\PYG{n}{Average} \PYG{n}{complexity}\PYG{p}{:} \PYG{n}{A} \PYG{p}{(}\PYG{l+m+mf}{1.77639751553}\PYG{p}{)}
+\end{Verbatim}

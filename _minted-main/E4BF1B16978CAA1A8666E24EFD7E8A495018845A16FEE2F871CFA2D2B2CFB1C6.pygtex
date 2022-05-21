@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k}{def} \PYG{n+nf}{\PYGZus{}get\PYGZus{}end\PYGZus{}tag}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{stag}\PYG{p}{,} \PYG{n}{tag\PYGZus{}finder}\PYG{p}{):}
+        \PYG{n}{stag\PYGZus{}name} \PYG{o}{=} \PYG{n}{XmlTag}\PYG{p}{(}\PYG{n}{stag}\PYG{p}{)}\PYG{o}{.}\PYG{n}{name}
+        \PYG{n}{num\PYGZus{}to\PYGZus{}find} \PYG{o}{=} \PYG{l+m+mi}{1}
+        \PYG{n}{l}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{tag} \PYG{o}{=} \PYG{k+kc}{None}\PYG{p}{,} \PYG{k+kc}{None}\PYG{p}{,} \PYG{k+kc}{None}
+        \PYG{k}{while} \PYG{n}{num\PYGZus{}to\PYGZus{}find} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+            \PYG{n}{l}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{tag} \PYG{o}{=} \PYG{n+nb}{next}\PYG{p}{(}\PYG{n}{tag\PYGZus{}finder}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}is\PYGZus{}valid\PYGZus{}end\PYGZus{}tag}\PYG{p}{(}\PYG{n}{stag}\PYG{p}{,} \PYG{n}{tag}\PYG{p}{):}
+                \PYG{n}{num\PYGZus{}to\PYGZus{}find} \PYG{o}{\PYGZhy{}=} \PYG{l+m+mi}{1}
+            \PYG{k}{elif} \PYG{n}{XmlTag}\PYG{p}{(}\PYG{n}{tag}\PYG{p}{)}\PYG{o}{.}\PYG{n}{name} \PYG{o}{==} \PYG{n}{stag\PYGZus{}name} \PYG{o+ow}{and} \PYG{o+ow}{not} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}is\PYGZus{}singular}\PYG{p}{(}\PYG{n}{tag}\PYG{p}{):}
+                \PYG{n}{num\PYGZus{}to\PYGZus{}find} \PYG{o}{+=} \PYG{l+m+mi}{1}
+        \PYG{k}{return} \PYG{n}{l}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{tag}
+\end{Verbatim}

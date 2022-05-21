@@ -9,6 +9,16 @@ class Presentation {
         -open_presentation()
 }
 
+class XmlFinder {
+        +find_xml_tag()
+        -_get_end_tag()
+        -_get_tag_finder()
+        -_replace()
+        -_find_tag()
+        -_is_singular()
+        -_is_valid_end_tag()
+}
+
 interface TextProcessor {
         +process()
 }
@@ -58,4 +68,5 @@ SlidePresentationService --> TextTranslationSystem
 CharacterNormalizer -up-|> TextTranslationSystem
 DuplicateSpaceRemover -up-|> TextTranslationSystem
 XmlTranslator -up-|> TextTranslationSystem
+XmlTranslator -up-> XmlFinder
 @enduml
