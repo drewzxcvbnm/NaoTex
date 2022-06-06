@@ -744,6 +744,9 @@ INPUT ./_minted-main/A5D8CB3D12C3015E76472ABC68D739972305D661519D3F56F2375D064A0
 INPUT ./_minted-main/A5D8CB3D12C3015E76472ABC68D739972305D661519D3F56F2375D064A0A900A.pygtex
 INPUT ./_minted-main/A5D8CB3D12C3015E76472ABC68D739972305D661519D3F56F2375D064A0A900A.pygtex
 INPUT ./_minted-main/A5D8CB3D12C3015E76472ABC68D739972305D661519D3F56F2375D064A0A900A.pygtex
+OUTPUT main-plantuml.txt
+INPUT ./main-plantuml.latex
+INPUT ./main-plantuml.latex
 OUTPUT main.pyg
 INPUT ./main.pyg
 INPUT ./_minted-main/514C3E1C62224EBF8803E1E19B961D7D5018845A16FEE2F871CFA2D2B2CFB1C6.pygtex
@@ -775,9 +778,6 @@ INPUT /home/drewman/test/Nao-PPTX/src/slidepresentationservice.py
 INPUT /home/drewman/test/Nao-PPTX/src/preader.py
 INPUT /home/drewman/test/Nao-PPTX/src/preader.py
 INPUT /home/drewman/test/Nao-PPTX/src/preader.py
-INPUT /home/drewman/test/Nao-PPTX/src/events/event.py
-INPUT /home/drewman/test/Nao-PPTX/src/events/event.py
-INPUT /home/drewman/test/Nao-PPTX/src/events/event.py
 INPUT /home/drewman/test/Nao-PPTX/src/events/mediapresentationevent.py
 INPUT /home/drewman/test/Nao-PPTX/src/events/mediapresentationevent.py
 INPUT /home/drewman/test/Nao-PPTX/src/events/mediapresentationevent.py
@@ -790,15 +790,6 @@ INPUT /home/drewman/test/Nao-PPTX/src/events/behavioractionevent.py
 INPUT /home/drewman/test/Nao-PPTX/src/translation/texttranslator.py
 INPUT /home/drewman/test/Nao-PPTX/src/translation/texttranslator.py
 INPUT /home/drewman/test/Nao-PPTX/src/translation/texttranslator.py
-INPUT /home/drewman/test/Nao-PPTX/src/naoxml/xmltag.py
-INPUT /home/drewman/test/Nao-PPTX/src/naoxml/xmltag.py
-INPUT /home/drewman/test/Nao-PPTX/src/naoxml/xmltag.py
-INPUT /home/drewman/test/Nao-PPTX/src/naoxml/xmltranslator.py
-INPUT /home/drewman/test/Nao-PPTX/src/naoxml/xmltranslator.py
-INPUT /home/drewman/test/Nao-PPTX/src/naoxml/xmltranslator.py
-INPUT /home/drewman/test/Nao-PPTX/src/web/webinterface.py
-INPUT /home/drewman/test/Nao-PPTX/src/web/webinterface.py
-INPUT /home/drewman/test/Nao-PPTX/src/web/webinterface.py
 INPUT /home/drewman/test/Nao-PPTX/src/comthread.py
 INPUT /home/drewman/test/Nao-PPTX/src/comthread.py
 INPUT /home/drewman/test/Nao-PPTX/src/comthread.py

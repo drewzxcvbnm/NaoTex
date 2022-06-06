@@ -34,11 +34,12 @@
 \contentsline {subsubsection}{\numberline {3.2.1.{}}Survey entity model}{35}{}%
 \contentsline {subsubsection}{\numberline {3.2.2.{}}Django HTML templating}{36}{}%
 \contentsline {subsubsection}{\numberline {3.2.3.{}}CSS styling}{38}{}%
-\contentsline {subsection}{\numberline {3.3.{}}Code metrics}{39}{}%
-\contentsline {section}{\numberline {4.{}}Testing}{41}{}%
-\contentsline {subsection}{\numberline {4.1.{}}Manual testing}{41}{}%
-\contentsline {subsection}{\numberline {4.2.{}}Automation testing}{41}{}%
-\contentsline {subsection}{\numberline {4.3.{}}Unit testing}{42}{}%
-\contentsline {section}{Conclusion}{43}{}%
-\contentsline {section}{Reference List}{45}{}%
-\contentsline {section}{Appendix}{47}{}%
+\contentsline {subsection}{\numberline {3.3.{}}Final class diagram}{39}{}%
+\contentsline {subsection}{\numberline {3.4.{}}Code metrics}{40}{}%
+\contentsline {section}{\numberline {4.{}}Testing}{43}{}%
+\contentsline {subsection}{\numberline {4.1.{}}Manual testing}{43}{}%
+\contentsline {subsection}{\numberline {4.2.{}}Automation testing}{43}{}%
+\contentsline {subsection}{\numberline {4.3.{}}Unit testing}{44}{}%
+\contentsline {section}{Conclusion}{45}{}%
+\contentsline {section}{Reference List}{47}{}%
+\contentsline {section}{Appendix}{49}{}%
